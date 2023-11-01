@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>University</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<body>
+	<header th:insert="fragments/header.html :: header"> </header>
+	<div class="container">
+		<h1>Register new User</h1>
+		<form th:action="@{/admin}" method="post" th:object="${user}">
+		<div class="form-group">
+				<label class="control-lable" for="userName">UserName</label> 
+				<input
+					id="userName" 
+					class="form-control" 
+					th:field="*{userName}" 
+					required autofocus="autofocus"
+					/>
+			</div>
+			<div class="form-group">
+				<label class="control-lable" for="password">Password</label> 
+				<input
+					id="password" class="form-control" 
+					type="password"
+					th:field="*{password}" 
+					required autofocus="autofocus"
+					/>
+			</div>
+			<div class="form-group">
+				<label class="control-lable" for="role">Role</label> 
+				<input
+					id="role" 
+					class="form-control" 
+					th:field="*{role}" required
+					autofocus="autofocus"
+					/>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success">Register</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<h1>Registered Users</h1>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">User Name</th>
+					<th scope="col">User Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.username}"></td>
+					<td th:text="${user.autorities}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
